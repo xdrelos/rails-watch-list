@@ -12,6 +12,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       redirect_to list_path(@list)
     else
+      @review = Review.new
       @movies = Movie.all.order(:title)
       render 'lists/show'
     end
