@@ -1,0 +1,5 @@
+<%= simple_form_for([@list, @bookmark], wrapper: :inline_form, html: { class: 'form-inline d-flex align-items-start'}) do |f| %>
+  <%= f.input :comment, input_html: { placeholder: 'Enter a comment'} %>
+  <%= f.association :movie, collection: @movies, selected: (@movie.id if @movie), prompt: 'Select a movie', input_html: { id: 'bookmark-select', class: 'select2' } %>
+  <%= f.button :submit, class: 'btn btn-outline-primary' %>
+<% end -%>

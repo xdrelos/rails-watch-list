@@ -1,0 +1,56 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image_url %>);">
+  <div class="num-film">
+    <%= @list.bookmarks.count %> movie(s)
+  </div>
+  <div class="container">
+    <h1 class="text-center"><%= @list.name %></h1>
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-10">
+          <h5>Add a movie</h5>
+          <%= render 'bookmarks/form' %>
+
+    </div>
+  </div>
+  <hr>
+  <div class="cards mt-3">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="d-flex align-items-stretch">
+        <div class="card-movie">
+          <img src="<%= bookmark.movie.poster_url %>" />
+          <div class="card-movie-infos">
+            <div>
+              <h2><%= bookmark.movie.title %>  <%= icon('far','star', class: 'text-warning') * bookmark.movie.rating %></h2>
+              <p><%= bookmark.movie.overview %></p>
+              <br>
+              <p>
+                <%= icon('far', 'comment') %>
+                <%= bookmark.comment %>
+              </p>
+            </div>
+            <h2 class="card-movie-pricing"><%= link_to 'Delete', bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class:'text-danger' %></h2>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+  <hr>
+  <div class="row mt-3">
+    <div class="col-7">
+      <h3>Reviews</h3>
+      <% @list.reviews.order('created_at DESC').each do |review| %>
+        <p><%= icon('far','star', class: 'text-warning') * review.rating %> <em><small><%= distance_of_time_in_words_to_now(review.created_at) %> ago</small></em></p>
+        <p><%= review.comment %></p>
+        <hr>
+      <% end -%>
+    </div>
+    <div class="col-5">
+      <div class="card p-3">
+        <%= render 'reviews/form' %>
+      </div>
+
+    </div>
+  </div>
+</div>
