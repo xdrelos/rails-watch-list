@@ -22,6 +22,9 @@
         <% @lists.each do |list| %>
           <%= link_to list_path(list) do %>
             <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image.attached? ? cl_image_path(list.image.key) : list.image_url %>)">
+                <div class="num-film">
+                  <h6><%= list.bookmarks.count %> movie(s)</h6>
+                </div>
               <%= list.name %>
             </div>
           <% end -%>
