@@ -14,6 +14,7 @@ class BookmarksController < ApplicationController
     else
       @review = Review.new
       @movies = Movie.all.order(:title)
+      @movie = @bookmark.movie
       render 'lists/show'
     end
   end
