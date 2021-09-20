@@ -22,8 +22,8 @@
           <img src="<%= bookmark.movie.poster_url %>" />
           <div class="card-movie-infos">
             <div>
-              <h2><%= bookmark.movie.title %>  <%= icon('far','star', class: 'text-warning') * bookmark.movie.rating %></h2>
-              <p><%= bookmark.movie.overview %></p>
+              <h2><%= link_to bookmark.movie.title, movie_path(bookmark.movie) %>  <%= icon('far','star', class: 'text-warning') * bookmark.movie.rating %></h2>
+              <p><%= bookmark.movie.overview.truncate(150, separator: ' ') %></p>
               <br>
               <p>
                 <%= icon('far', 'comment') %>

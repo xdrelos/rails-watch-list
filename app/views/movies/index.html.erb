@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Movies available</h1>
+
+  <form class="form-inline my-2 my-lg-0 mr-2">
+    <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search" value="<%= params[:query] %>">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+  <hr>
+  <%== pagy_bootstrap_nav(@pagy) %>
+  <div class="cards mt-3">
+    <% @movies.each do |movie| %>
+      <div class="d-flex align-items-stretch">
+        <div class="card-movie">
+          <img src="<%= movie.poster_url %>" />
+          <div class="card-movie-infos">
+            <div>
+              <%= link_to movie_path(movie) do %>
+                <h2><%= movie.title %>  <%= icon('far','star', class: 'text-warning') * movie.rating %></h2>
+              <% end -%>
+              <p><%= movie.overview.truncate(150, separator: ' ') %></p>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>

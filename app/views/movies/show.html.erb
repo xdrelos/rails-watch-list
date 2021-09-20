@@ -1,0 +1,19 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @movie.poster_url %>);">
+  <div class="container">
+    <h1 class="text-center"><%= @movie.title %></h1>
+  </div>
+</div>
+
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10">
+          <h5>Add to a list</h5>
+          <%= render 'bookmarks/form_movie' %>
+    </div>
+  </div>
+  <hr>
+  <h3>Rating: <%= icon('far','star', class: 'text-warning') * @movie.rating %></h3>
+  <h3>Description:</h3>
+  <p><%= @movie.overview %></p>
+  <p><%= link_to 'Back', :back, class:'btn btn-outline-primary' %></p>
+</div>
