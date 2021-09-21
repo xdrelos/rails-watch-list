@@ -6,10 +6,10 @@
   </div>
 </div>
 <div class="container mt-3">
-
+  <% if user_signed_in? %>
   <div class="row">
     <div class="col-12">
-      <div class="div d-flex justify-content-between mb-3">
+      <div class="d-flex justify-content-between mb-3">
       <h2>My Lists</h2>
       <%= link_to 'Create a new list', new_list_path, class: 'btn btn-outline-success' %>
 
@@ -31,11 +31,16 @@
         <% end -%>
       </div>
     </div>
-    <div class="col-2">
-
-    </div>
   </div>
-
+  <% else %>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="card p-3">
+          <h3 class="text-center">Please <%= link_to 'Login', new_user_session_path %> or <%= link_to 'Signup', new_user_registration_path %> to access the application</h3>
+        </div>
+      </div>
+    </div>
+  <% end -%>
 </div>
 
 
