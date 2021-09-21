@@ -1,8 +1,9 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :destroy]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
-    @lists = List.all
+    @lists = List.all.order(:name)
   end
 
   def show
